@@ -1,4 +1,4 @@
-class Aufgabe2 {
+class Problem2 {
     public static void main(String[] args) {
         System.out.println("Aufgabe 2");
         int i,l,m,n;
