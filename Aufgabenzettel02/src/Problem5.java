@@ -1,6 +1,7 @@
 import Prog1Tools.IOTools;
 
 class Problem5 {
+    //perfect numbers => 6, 28, 496, 8.128, 33.550.336, 8.589.869.056.
     public static void main(String[] args) {
         System.out.println("Time to find a perfect number");
         int possiblePerfectNumber = 1;
