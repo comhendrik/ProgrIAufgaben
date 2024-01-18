@@ -1,6 +1,6 @@
 class Problem2 {
     public static void main(String[] args) {
-        System.out.println("Aufgabe 2");
+        System.out.println("Problem 2");
         int i,l,m,n;
         l = 8/3;
         i = l * 6 * l + 1; // i =25
