@@ -9,8 +9,8 @@ public class Problems02 {
         //problem2();
         //problem3();
         //problem4();
-        problem5();
-        //problem5Help();
+        //problem5();
+        problem5Help();
         //problem6();
 
 
@@ -136,14 +136,17 @@ public class Problems02 {
             int sum = 0;
             //Man muss nur bis zur Wurzel gehen, da jede Zahl größer als die Wurzel niemals ein Teiler sein kann:
             // Bsp: sqrt(25) = 5 -> 25 % 6 != 0,
-            //for schleife bis sqrt + 1, da die Wurzel auch ein Teiler ist
             int sqrt = (int) Math.sqrt(currentNumber);
-            for (int i = 1; i <= sqrt + 1; i++) {
+            for (int i = 1; i <= sqrt; i++) {
                 if (currentNumber % i == 0) {
                     sum += i;
+
+                    if (i != currentNumber / i) {
+                        sum += currentNumber / i;
+                    }
                 }
             }
-            if (sum == currentNumber) {
+            if (sum == currentNumber * 2) {
                 System.out.println(currentNumber);
                 numberCounter++;
                 if (numberCounter == 5) break;
