@@ -8,9 +8,9 @@ public class Problems02 {
         //problem1While();
         //problem2();
         //problem3();
-        //problem4();
+        problem4();
         //problem5();
-        problem5Help();
+        //problem5Help();
         //problem6();
 
 
@@ -20,15 +20,17 @@ public class Problems02 {
         int n = IOTools.readInt("Zahl n eingeben: ");
         int i = 3;
         do {
-            System.out.println(1.0 / (2*i+1));
+            if (i>=2*n) break;
             i++;
+            System.out.println(1.0 / (2*i+1));
         } while(i<2*n);
 
     }
 
     public static void problem1For() {
         int n = IOTools.readInt("Zahl n eingeben: ");
-        for (int i=3; i<2*n; i++) {
+        for (int i=3; i<2*n;) {
+            i++;
             System.out.println(1.0 / (2*i+1));
         }
 
@@ -38,8 +40,8 @@ public class Problems02 {
         int n = IOTools.readInt("Zahl n eingeben: ");
         int i = 3;
         while(i<2*n) {
-            System.out.println(1.0 / (2*i+1));
             i++;
+            System.out.println(1.0 / (2*i+1));
         }
 
     }
@@ -60,10 +62,7 @@ public class Problems02 {
         if (min < a && a < max) System.out.println(a);
         else if (min < b && b < max) System.out.println(b);
         else if (min < c && c < max) System.out.println(c);
-            //Only executed when numbers are not equal
-        else if (a==b) System.out.println(a);
-        else if (a==c) System.out.println(a);
-        else System.out.println(b);
+        else System.out.println("Es gibt keinen Mittlerenwert");
     }
 
     public static void problem3() {
@@ -79,32 +78,42 @@ public class Problems02 {
             euclidB = division_rest;
         }
         System.out.println(euclidA);
+
         System.out.println("b)");
-        int min = a < b ? a : b;
-        int ggt = -1;
-        for (int i = 1; i < min + 1; i++) {
-            if (a % i == 0 && b % i == 0) {
-                ggt = i;
+
+        if (a > 0 && b > 0) {
+            int min = a < b ? a : b;
+            int ggt = 0;
+            for (int i = 1; i < min + 1; i++) {
+                if (a % i == 0 && b % i == 0) {
+                    ggt = i;
+                }
             }
+            System.out.println(ggt);
+        } else {
+            int max = a > b ? a : b;
+            System.out.println(max);
         }
-        System.out.println(ggt);
+
     }
 
     public static void problem4() {
+
+        int n;
+        boolean isPrimeNumber;
         while (true) {
-            int n = IOTools.readInt("n: ");
+            n = IOTools.readInt("n: ");
             if (n <= 1) {
                 break;
             }
-            boolean isPrimeNumber = true;
-            for (int i = 2; i<n; i++) {
+            isPrimeNumber = true;
+            for (int i = 2; i * i <= n / 2; i++) {
                 if (n % i == 0) {
                     isPrimeNumber = false;
                     break;
                 }
             }
-            if (isPrimeNumber) System.out.println("Prime Number!");
-            else System.out.println("Not a Prime Number");
+            System.out.println((isPrimeNumber ? "" : "Not a ") + "Prime Number");
         }
     }
 
