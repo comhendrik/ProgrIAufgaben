@@ -3,6 +3,7 @@ import Prog1Tools.IOTools;
 public class Problems02 {
 
     public static void main(String[] args) {
+        System.out.println("Hello World!");
         //problem1DoWhile();
         //problem1For();
         //problem1While();
