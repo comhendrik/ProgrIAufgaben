@@ -1,18 +1,68 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Problems04 {
     public static void main(String[] args) {
+        ArrayList<Double> test = new ArrayList<>();
+        test.add(3.0);
+        test.add(4.0);
+        test.add(1.0);
+        test.add(8.0);
+        test.add(4.0);
+        System.out.println(sumValuesInRange(test, 3.0, 4.0));
         ArrayList<Integer> list1 = new ArrayList<>();
         list1.add(5);
         list1.add(3);
-
         ArrayList<Integer> list2 = new ArrayList<>();
         list2.add(9);
         list2.add(6);
         list2.add(7);
+        System.out.println(list2);
+        sort(list2);
+        System.out.println(list2);
         System.out.println(merge(list1, list2));
     }
 
+    //Problem
+    public static long computeFaculty(int number) {
+        int faculty = 1;
+        for (int i=2; i<=number; i++) {
+            faculty *= i;
+        }
+        return faculty;
+    }
+
+    public static boolean isPrimeNumber(long number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (long i = 2; i * i <= number / 2; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Problem 2
+
+    public static double sumValuesInRange(ArrayList<Double> list, double min, double max) {
+        int sum = 0;
+        for (int i=0; i<list.size();i++) {
+            if (min <= list.get(i) && list.get(i) <= max) sum += list.get(i);
+        }
+        return sum;
+    }
+
+    //Problem 3
+
+    public static void sort(ArrayList<Integer> list) {
+        Collections.sort(list);
+    }
+
+
+
+    //Problem 4
 
     public static ArrayList<Integer> merge(ArrayList<Integer> list1, ArrayList<Integer> list2) {
         ArrayList<Integer> mergedList = new ArrayList<>();
@@ -25,9 +75,13 @@ public class Problems04 {
         }
 
         if (list1.size() > minLength) {
-            mergedList.addAll(list1.subList(minLength, list1.size()));
+            for (int i = minLength; i < list1.size(); i++) {
+                mergedList.add(list1.get(i));
+            }
         } else if (list2.size() > minLength) {
-            mergedList.addAll(list2.subList(minLength, list2.size()));
+            for (int i = minLength; i < list2.size(); i++) {
+                mergedList.add(list2.get(i));
+            }
         }
 
         return mergedList;
