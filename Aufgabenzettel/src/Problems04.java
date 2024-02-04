@@ -21,6 +21,15 @@ public class Problems04 {
         sort(list2);
         System.out.println(list2);
         System.out.println(merge(list1, list2));
+        int[] data = new int[6];
+        data[0] = 1;
+        data[1] = 1;
+        data[2] = 1;
+        data[3] = 1;
+        data[4] = 1;
+        data[5] = 1;
+
+        createHistogramm(data, 5);
     }
 
     //Problem
@@ -85,5 +94,44 @@ public class Problems04 {
         }
 
         return mergedList;
+    }
+
+    // Problem 5
+
+    public static int[] createHistogramm(int[] data, int anzahlIntervalle) {
+        if (data == null || data.length == 0 || anzahlIntervalle <= 0) {
+            return new int[0];
+        }
+
+        int min = data[0];
+        int max = data[0];
+
+        for (int i = 1; i < data.length; i++) {
+            if (data[i] < min) {
+                min = data[i];
+            } else if (data[i] > max) {
+                max = data[i];
+            }
+        }
+
+        // Berechne die Intervallbreite
+        double intervallBreite = (double) (max - min + 1) / anzahlIntervalle;
+
+        // Initialisiere das Histogramm
+        int[] histogramm = new int[anzahlIntervalle];
+
+        // Fülle das Histogramm mit den Häufigkeiten
+        for (int i = 0; i < data.length; i++) {
+            int intervallIndex = (int) ((data[i] - min) / intervallBreite);
+            histogramm[intervallIndex]++;
+        }
+
+        return histogramm;
+    }
+
+    // Problem 6
+
+    public static String[] split(String line, char splitChar) {
+        return line.split(String.valueOf(splitChar));
     }
 }
