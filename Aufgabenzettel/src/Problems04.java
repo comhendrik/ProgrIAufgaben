@@ -16,6 +16,7 @@ public class Problems04 {
 
     //Problem
     public static long computeFaculty(int number) {
+        if (number < 0) return -1;
         int faculty = 1;
         for (int i=2; i<=number; i++) {
             faculty *= i;
