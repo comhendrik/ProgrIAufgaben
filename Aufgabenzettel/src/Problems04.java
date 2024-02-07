@@ -3,13 +3,6 @@ import java.util.Collections;
 
 public class Problems04 {
     public static void main(String[] args) {
-        ArrayList<Double> test = new ArrayList<>();
-        test.add(3.0);
-        test.add(4.0);
-        test.add(1.0);
-        test.add(8.0);
-        test.add(4.0);
-        System.out.println(sumValuesInRange(test, 3.0, 4.0));
         ArrayList<Integer> list1 = new ArrayList<>();
         list1.add(5);
         list1.add(3);
@@ -17,18 +10,8 @@ public class Problems04 {
         list2.add(9);
         list2.add(6);
         list2.add(7);
-        System.out.println(list2);
-        sort(list2);
-        System.out.println(list2);
-        System.out.println(merge(list1, list2));
-        int[] data = new int[6];
-        data[0] = 1;
-        data[1] = 1;
-        data[2] = 1;
-        data[3] = 1;
-        data[4] = 1;
-        data[5] = 1;
-
+        ArrayList<Integer> list3 = merge(list1,list2);
+        System.out.println(list3);
     }
 
     //Problem
@@ -66,6 +49,7 @@ public class Problems04 {
 
     public static void sort(ArrayList<Integer> list) {
         Collections.sort(list);
+        System.out.println(list);
     }
 
 
@@ -90,6 +74,17 @@ public class Problems04 {
             for (int i = minLength; i < list2.size(); i++) {
                 mergedList.add(list2.get(i));
             }
+        }
+
+        return mergedList;
+    }
+
+    public static ArrayList<Integer> mergeReference(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        ArrayList<Integer> mergedList = new ArrayList<>();
+
+        while(!list1.isEmpty() || !list2.isEmpty()) {
+            if (!list1.isEmpty()) mergedList.add(list1.remove(0));
+            if (!list2.isEmpty()) mergedList.add(list2.remove(0));
         }
 
         return mergedList;
