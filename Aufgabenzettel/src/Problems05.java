@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Problems05 {
 
     public static void main(String[] args) {
-        Student student1 = new Student(124, "Hendrik");
-        Student student2 = new Student(123, "Hendik");
+        Student student1 = new Student(123, "Hendrik");
+        Student student2 = new Student(123, "Hendrik");
         Student student3 = new Student(223, "Hendik");
         Boolean result = studentIsEqual(student1,student2);
         System.out.println(result);
@@ -24,8 +24,7 @@ public class Problems05 {
         //first check every value if they are not equal, then check the last value if its equal and return value
         if(student1.getMatrikelnummer() != student2.getMatrikelnummer()) return false;
         if(!student1.getName().equals(student2.getName())) return false;
-        if(student1.getCreditPoints() != student2.getCreditPoints()) return false;
-        return Student.getAnzahl() == Student.getAnzahl();
+        return student1.getCreditPoints() == student2.getCreditPoints();
     }
 
     // Problem 02
