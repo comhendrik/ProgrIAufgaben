@@ -18,14 +18,14 @@ public class Problems04 {
     public static long computeFaculty(int number) {
         if (number < 0) return -1;
         int faculty = 1;
-        for (int i=2; i<=number; i++) {
+        for (int i=2; i<= number; i++) {
             faculty *= i;
         }
         return faculty;
     }
 
     public static boolean isPrimeNumber(long number) {
-        if (number <= 1) {
+        if (number <= 0) {
             return false;
         }
         for (long i = 2; i * i <= number / 2; i++) {
