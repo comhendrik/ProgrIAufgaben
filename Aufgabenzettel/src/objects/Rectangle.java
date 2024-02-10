@@ -73,5 +73,11 @@ public class Rectangle {
 
     }
 
+    //Klassenmethode:
+
+    public static final int test() {
+        return 1;
+    }
+
 
 }

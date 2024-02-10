@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class Problems03 {
     public static void main(String[] args) {
-        problem6();
+        problem4();
 
     }
 
@@ -77,12 +77,28 @@ public class Problems03 {
         System.out.println("listB Size: " + listB.size());
         System.out.println("Switching values...");
 
+
+
+        int value;
+
         while(!listA.isEmpty()) {
-            listB.add(listA.remove(0));
+            value = listA.remove(0);
+            boolean isAdded = false;
+            for (int i = 0; i< listB.size(); i++) {
+                if (listB.get(i) > value) {
+                    listB.add(i, value);
+                    isAdded = true;
+                    break;
+                }
+            }
+            if (!isAdded) listB.add(value);
+
         }
 
         System.out.println("listA Size: " + listA.size());
+        System.out.println(listA);
         System.out.println("listB Size: " + listB.size());
+        System.out.println(listB);
 
     }
 
