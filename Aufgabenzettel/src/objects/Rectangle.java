@@ -7,32 +7,34 @@ public class Rectangle {
     private double x;
     private double y;
 
-    public Rectangle(double a, double b, double x, double y) {
-        if (a < 0) this.a = 0;
-        else this.a = a;
+    public Rectangle(double a, double b, double x, double y) throws RuntimeException {
+        this(a,b);
 
-        if (b < 0) this.b = 0;
-        else this.b = b;
+        this.y = y; //weil es sparsamer ist
 
         this.x = x;
-
-        this.y = y;
     }
-    public void setA(double a) {
+
+    public Rectangle(double a, double b) throws RuntimeException {
+        setA(a); //damit man die validierung einheitlich macht
+
+        setB(b);
+    }
+    public void setA(double a) throws RuntimeException {
+        if (a<0) throw new RuntimeException("a<0");
         this.a = a;
     }
 
-    public void setB(double b) {
+    public void setB(double b) throws RuntimeException {
+        if (a<0) throw new RuntimeException("b<0");
         this.b = b;
     }
 
     public void setX(double x) {
-        if (x < 0) return;
         this.x = x;
     }
 
     public void setY(double y) {
-        if (y<0) return;
         this.y = y;
     }
     public double getA() {

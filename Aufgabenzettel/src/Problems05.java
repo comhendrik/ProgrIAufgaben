@@ -30,18 +30,18 @@ public class Problems05 {
     // Problem 02
 
     public static void bubbleSort(ArrayList<Student> list) {
-        int i, j;
-        Student temp;
+        Student first, second;
         boolean swapped;
-        for (i = 0; i < list.size() - 1; i++) {
-            swapped = false;
-            for (j = 0; j < list.size() - i - 1; j++) {
-                if (list.get(j).getMatrikelnummer() > list.get(j+1).getMatrikelnummer()) {
 
-                    // Swap
-                    temp = list.get(j);
-                    list.set(j, list.get(j+1));
-                    list.set(j+1,temp);
+        for (int i = 0; i < list.size() - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < list.size() - i - 1; j++) {
+                first = list.get(j);
+                second = list.get(j+1);
+                if (first.getMatrikelnummer() > second.getMatrikelnummer()) {
+
+                    list.set(j, second);
+                    list.set(j+1,first);
                     swapped = true;
                 }
             }
