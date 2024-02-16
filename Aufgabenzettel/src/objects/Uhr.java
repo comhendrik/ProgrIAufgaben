@@ -71,4 +71,16 @@ public class Uhr {
         return 0;
     }
 
+    public int computeDifference(int hours, int minutes, int seconds) {
+        int overallSeconds = hours * 3600;
+        overallSeconds += minutes * 60;
+        overallSeconds += seconds;
+        return (int) (this.gesamtSekunden - overallSeconds);
+    }
+
+    public int computeDifference(Uhr uhr2) {
+        return (int) (this.gesamtSekunden - uhr2.getGesamtSekunden());
+    }
+
+
 }
