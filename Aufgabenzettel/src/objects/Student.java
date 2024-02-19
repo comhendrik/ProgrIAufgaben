@@ -68,12 +68,6 @@ public class Student {
         }
     }
 
-    public void drucke() {
-        System.out.println("Name: " + name);
-        System.out.println("Matrikelnummer: " + matrikelnummer);
-        System.out.println("Credit-Points: " + creditPoints);
-    }
-
     @Override
     public String toString() {
         return "Student [matrikelnummer=" + matrikelnummer + ", "
