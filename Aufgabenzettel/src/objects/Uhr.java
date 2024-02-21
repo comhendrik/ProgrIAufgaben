@@ -72,14 +72,16 @@ public class Uhr {
     }
 
     public int computeDifference(int hours, int minutes, int seconds) {
-        int overallSeconds = hours * 3600;
-        overallSeconds += minutes * 60;
-        overallSeconds += seconds;
-        return (int) (this.gesamtSekunden - overallSeconds);
+        int overallSecondsOfInput = hours * 3600;
+        overallSecondsOfInput += minutes * 60;
+        overallSecondsOfInput += seconds;
+        return (int) (this.gesamtSekunden - overallSecondsOfInput);
     }
 
-    public int computeDifference(Uhr uhr2) {
-        return (int) (this.gesamtSekunden - uhr2.getGesamtSekunden());
+    //Nutze other als Parametername, wenn es ein Objekt, der gleichen Klasse ist.
+    //Nutze den direkten Zugriff auf die private Variable direkt in der Klasse, anstelle des Getter
+    public int computeDifference(Uhr other) {
+        return (int) (this.gesamtSekunden - other.gesamtSekunden);
     }
 
 
