@@ -11,7 +11,7 @@ public class Restaurant {
     private ArrayList<Meal> allMeals;
 
 
-    //Classattribute
+    //Classattributes
     public static int numberOfTotalRestaurants;
 
 
