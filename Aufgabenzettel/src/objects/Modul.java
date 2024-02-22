@@ -66,7 +66,7 @@ public class Modul {
     public boolean addTeilnehmer(Student teilnehmer) {
         //if(studenten.size() < maxAnzahl && !istTeilnehmer(teilnehmer)) {
         //oder auch mittels ArrayList.contains(...)
-        if(studenten.size() < maxAnzahl && !studenten.contains(teilnehmer)) {
+        if(studenten.size() < maxAnzahl && !istTeilnehmer(teilnehmer)) {
             studenten.add(teilnehmer);
             return true;
         }
@@ -83,6 +83,26 @@ public class Modul {
 
     public boolean removeTeilnehmer(Student teilnehmer) {
         return studenten.remove(teilnehmer);
+    }
+
+    public Student removeTeilnehmer(long matrikelnummer) {
+        for (int i=0; i<this.studenten.size(); i++) {
+            if (this.studenten.get(i).getMatrikelnummer() == matrikelnummer) return this.studenten.remove(i);
+        }
+        return null;
+    }
+
+    public ArrayList<Student> bewerten(ArrayList<Long> matrikelnummern) {
+        ArrayList<Student> bewerteteStudenten = new ArrayList<>();
+
+        for (Student stud : this.studenten) {
+            if (matrikelnummern.contains(stud.getMatrikelnummer())) {
+                stud.erhoeheCreditPoints(this.creditPoints);
+                bewerteteStudenten.add(stud);
+            }
+        }
+
+        return bewerteteStudenten;
     }
 
     public int getAnzahl() {
@@ -163,26 +183,6 @@ public class Modul {
 
         return true;
 
-    }
-
-    public Student removeTeilnehmer(long matrikelnummer) {
-        for (int i=0; i<this.studenten.size(); i++) {
-            if (this.studenten.get(i).getMatrikelnummer() == matrikelnummer) return this.studenten.remove(i);
-        }
-        return new Student(0);
-    }
-
-    public ArrayList<Student> bewerten(ArrayList<Long> matrikelnummern) {
-        ArrayList<Student> bewerteteStudenten = new ArrayList<>();
-
-        for (Student stud : this.studenten) {
-            if (matrikelnummern.contains(stud.getMatrikelnummer())) {
-                stud.erhoeheCreditPoints(this.creditPoints);
-                bewerteteStudenten.add(stud);
-            }
-        }
-
-        return bewerteteStudenten;
     }
 
 
