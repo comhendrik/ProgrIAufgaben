@@ -112,6 +112,13 @@ public class Zeiteintrag implements Comparable {
     }
 
     public boolean istInMonat(int jahr, int monat) {
+        //ich betrachte nicht die Berechnung eines Schaltjahres
+        int startjahr = 2000;
+        int startTag = 1;
+        int startMonat = 1;
+        long ganzeTage = begin / 86400;
+        //for schleife zum heraufzählen der Monate und Jahre
         return true;
     }
+
 }
