@@ -34,6 +34,10 @@ public class Rechteck extends GemObjekt{
         this.b = b;
     }
 
+    public double getFläche() {
+        return a * b;
+    }
+
     @Override
     public String toString() {
         return "Rechteck{" +

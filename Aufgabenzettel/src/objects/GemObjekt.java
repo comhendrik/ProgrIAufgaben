@@ -1,13 +1,12 @@
 package objects;
 
 import java.awt.*;
+import java.util.Objects;
 
 public abstract class GemObjekt {
     protected int farbe;
 
-    protected double koordX;
-
-    protected double koordY;
+    protected Koordinate koord;
 
     final static int SCHWARZ = 1;
 
@@ -15,8 +14,7 @@ public abstract class GemObjekt {
 
     public GemObjekt(int farbe, double x, double y) {
         setFarbe(farbe);
-        koordY = y;
-        koordX = x;
+        koord = new Koordinate(x,y);
 
     }
 
@@ -36,34 +34,27 @@ public abstract class GemObjekt {
         }
     }
 
-    public double getKoordX() {
-        return koordX;
+    public Koordinate getKoord() {
+        return koord;
     }
 
-    public void setKoordX(double koordX) {
-        this.koordX = koordX;
-    }
-
-    public double getKoordY() {
-        return koordY;
-    }
-
-    public void setKoordY(double koordY) {
-        this.koordY = koordY;
+    public void setKoord(Koordinate koord) {
+        this.koord = koord;
     }
 
     public double getAbstandUrsprung() {
-        return Math.sqrt(Math.pow(koordX, 2)+Math.pow(koordY,2));
+        return Math.sqrt(Math.pow(koord.getKoordX(), 2)+Math.pow(koord.getKoordY(),2));
     }
 
     @Override
     public String toString() {
         return "GemObjekt{" +
                 "farbe=" + farbe +
-                ", koordX=" + koordX +
-                ", koordY=" + koordY +
+                ", koord=" + koord +
                 '}';
     }
+
+    abstract double getFläche();
 
     @Override
     public boolean equals(Object o) {
@@ -73,19 +64,13 @@ public abstract class GemObjekt {
         GemObjekt gemObjekt = (GemObjekt) o;
 
         if (farbe != gemObjekt.farbe) return false;
-        if (Double.compare(koordX, gemObjekt.koordX) != 0) return false;
-        return Double.compare(koordY, gemObjekt.koordY) == 0;
+        return Objects.equals(koord, gemObjekt.koord);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = farbe;
-        temp = Double.doubleToLongBits(koordX);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(koordY);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = farbe;
+        result = 31 * result + (koord != null ? koord.hashCode() : 0);
         return result;
     }
 }
