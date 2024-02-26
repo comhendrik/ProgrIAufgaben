@@ -55,4 +55,37 @@ public abstract class GemObjekt {
     public double getAbstandUrsprung() {
         return Math.sqrt(Math.pow(koordX, 2)+Math.pow(koordY,2));
     }
+
+    @Override
+    public String toString() {
+        return "GemObjekt{" +
+                "farbe=" + farbe +
+                ", koordX=" + koordX +
+                ", koordY=" + koordY +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GemObjekt gemObjekt = (GemObjekt) o;
+
+        if (farbe != gemObjekt.farbe) return false;
+        if (Double.compare(koordX, gemObjekt.koordX) != 0) return false;
+        return Double.compare(koordY, gemObjekt.koordY) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = farbe;
+        temp = Double.doubleToLongBits(koordX);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(koordY);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }
