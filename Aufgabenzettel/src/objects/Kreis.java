@@ -22,7 +22,13 @@ public class Kreis extends GemObjekt {
         this.radius = radius;
     }
 
+    @Override
     public double getFläche() {
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    @Override
+    public double getUmfang() {
         return 2 * Math.PI * radius;
     }
 

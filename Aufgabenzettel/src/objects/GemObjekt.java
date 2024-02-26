@@ -54,7 +54,9 @@ public abstract class GemObjekt {
                 '}';
     }
 
-    abstract double getFläche();
+    public abstract double getFläche();
+
+    public abstract double getUmfang();
 
     @Override
     public boolean equals(Object o) {
