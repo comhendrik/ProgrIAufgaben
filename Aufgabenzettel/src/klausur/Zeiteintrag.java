@@ -76,7 +76,7 @@ public class Zeiteintrag implements Comparable {
         long sekunden = zeitdifferenz % 60;
         double gesamtZeit = stunden + (minuten / 60.0) + (sekunden / 3600.0);
 
-        return (double) gesamtZeit;
+        return gesamtZeit;
     }
 
     @Override
@@ -112,13 +112,29 @@ public class Zeiteintrag implements Comparable {
     }
 
     public boolean istInMonat(int jahr, int monat) {
-        //ich betrachte nicht die Berechnung eines Schaltjahres
-        int startjahr = 2000;
-        int startTag = 1;
-        int startMonat = 1;
+        //ich betrachte nicht die Berechnung eines Schaltjahres zur Vereinfachten der Darstellung
+        int aktuellesJahr = 2000;
+        int aktuellerTag = 1;
+        int aktuellerMonat = 1;
         long ganzeTage = begin / 86400;
-        //for schleife zum heraufzählen der Monate und Jahre
-        return true;
+
+
+        int[] maximaleTage = {31,28,31,30,31,30,31,31,30,31,30,31};
+        //for schleife zum heraufzählen der Tage, Monate und Jahre
+        for (long i=0; i<ganzeTage; i++) {
+            aktuellerTag += 1;
+            if (maximaleTage[aktuellerMonat-1] == aktuellerTag) {
+                aktuellerTag = 1;
+                aktuellerMonat += 1;
+            }
+
+            if (aktuellerMonat == 13) {
+                aktuellerMonat = 1;
+                aktuellesJahr += 1;
+            }
+        }
+
+        return jahr == aktuellesJahr && monat == aktuellerMonat;
     }
 
 }
