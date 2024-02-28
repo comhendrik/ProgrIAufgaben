@@ -1,6 +1,6 @@
 package objects;
 
-public class Kreis extends GemObjekt {
+public class Kreis extends GeomObjekt {
     private double radius;
 
     public Kreis(int farbe, double x, double y, double radius) {
@@ -9,8 +9,8 @@ public class Kreis extends GemObjekt {
 
     }
 
-    public Kreis(int farbe) {
-        this(farbe, 0,0, 0);
+    public Kreis(int radius) {
+        this(GeomObjekt.SCHWARZ, 0,0, radius);
     }
 
     public double getRadius() {

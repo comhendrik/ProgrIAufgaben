@@ -1,6 +1,6 @@
 package klausur;
 
-public class Zeiteintrag implements Comparable {
+public class Zeiteintrag implements Comparable<Zeiteintrag> {
 
     private long begin;
 
@@ -96,19 +96,8 @@ public class Zeiteintrag implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-
-        Zeiteintrag other = (Zeiteintrag) o;
-
-        if(this.getBegin() > other.getBegin()){
-            return 1;
-        }
-        else if(this.getBegin() < other.getBegin()){
-            return -1;
-        }
-        else{
-            return 0;
-        }
+    public int compareTo(Zeiteintrag other) {
+        return Long.compare(this.getBegin(), other.getBegin());
     }
 
     public boolean istInMonat(int jahr, int monat) {

@@ -1,6 +1,6 @@
 package objects;
 
-public class Rechteck extends GemObjekt{
+public class Rechteck extends GeomObjekt {
 
     private double a;
     private double b;

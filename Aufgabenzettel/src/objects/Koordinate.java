@@ -1,6 +1,6 @@
 package objects;
 
-class Koordinate {
+public class Koordinate {
     private double koordX;
     private double koordY;
 
