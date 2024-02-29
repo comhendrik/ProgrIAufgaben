@@ -20,8 +20,9 @@ public class Taetigkeit {
         for (Zeiteintrag elm : zeiteintraege) {
             if (elm.equals(eintrag)) return false;
             if (elm.getEnd() == -1 && eintrag.getEnd() == -1) return false;
-            if (elm.getEnd() == -1 && elm.getBegin() < eintrag.getBegin()) return false;
-            if (elm.getBegin() < eintrag.getBegin() && elm.getEnd() > eintrag.getEnd()) return false;
+            if (elm.getEnd() == -1 && elm.getBegin() < eintrag.getBegin()) return false; //brauch man den?
+            if (elm.getBegin() < eintrag.getBegin() && elm.getEnd() > eintrag.getBegin()) return false;
+            if (elm.getBegin() < eintrag.getEnd() && elm.getEnd() > eintrag.getEnd()) return false;
         }
         zeiteintraege.add(eintrag);
         Collections.sort(zeiteintraege);
