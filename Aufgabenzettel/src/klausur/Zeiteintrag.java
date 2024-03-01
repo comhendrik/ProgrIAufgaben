@@ -126,4 +126,11 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
         return jahr == aktuellesJahr && monat == aktuellerMonat;
     }
 
+    public boolean ueberdeckt(Zeiteintrag eintrag) {
+        //TODO:
+        if (this.getBegin() < eintrag.getBegin() && this.getEnd() > eintrag.getBegin()) return true;
+        if (this.getBegin() < eintrag.getEnd() && this.getEnd() > eintrag.getEnd()) return true;
+        return false;
+    }
+
 }

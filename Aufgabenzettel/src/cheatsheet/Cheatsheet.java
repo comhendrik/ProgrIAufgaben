@@ -1,13 +1,16 @@
+package cheatsheet;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
-public abstract class Cheatsheet {
-
+public abstract class Cheatsheet implements Comparable<Cheatsheet> {
     //primitive Datentypen:
 
     //kein direkter Zugriff durch Subklasse
     private int zahl;
 
     //direkter Zugriff durch Subklasse
+    //!AUFPASSEN gilt als Public für das Package -> eventuell in der Subklasse lieber mit gettern arbeiten
     protected int neueZahl;
 
     //Referenzvariablen
@@ -46,7 +49,7 @@ public abstract class Cheatsheet {
     }
 
     public ArrayList<Integer> getZahlenListe() {
-        return (ArrayList<Integer>) zahlenListe.clone();
+        return new ArrayList<>(zahlenListe);
         //- Kein Getter für Listen (allgemein Referenztypen), da man dann diese von außen löschen kann
         // => inhaltliche Kopie zurückgeben
     }
@@ -55,37 +58,43 @@ public abstract class Cheatsheet {
         this.zahlenListe = zahlenListe;
     }
 
+    public void sekundenBerechnen(int sekunden) {
+        int stunden = sekunden / 3600;
+        int minuten = (sekunden % 3600) / 60;
+        int übrigeSekunden  = sekunden % 60;
+    }
+
     public abstract int berechneNummern();
-}
 
-
-//public steht hier im normal Fall auch
-//diesmal nicht wegen der einen Datei
-class SubCheatsheet extends Cheatsheet {
-    private int weitereZahl;
-
-    public SubCheatsheet(int zahl, int neueZahl, ArrayList<Integer> zahlenListe, int weitereZahl) {
-        super(zahl, neueZahl, zahlenListe);
-        setWeitereZahl(weitereZahl);
+    @Override
+    public int compareTo(Cheatsheet o) {
+        //wenn this < other -> -1
+        //wenn this > other -> 1
+        // wenn this == other -> 0
+        if (this.zahl < o.zahl) return -1;
+        if (this.zahl > o.zahl) return 1;
+        return 0;
     }
 
     @Override
-    public int berechneNummern() {
-        return getZahl() * neueZahl * weitereZahl * MULTIPLIKATOR;
-        //get Zahl wegen der Sichtbarkeit
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cheatsheet that = (Cheatsheet) o;
+
+        if (zahl != that.zahl) return false;
+        if (neueZahl != that.neueZahl) return false;
+        return Objects.equals(zahlenListe, that.zahlenListe);
     }
 
-    public int getWeitereZahl() {
-        return weitereZahl;
-    }
-
-    public void setWeitereZahl(int weitereZahl) {
-        if (weitereZahl < 0) throw new RuntimeException("Zahl kleiner 0");
-        this.weitereZahl = weitereZahl;
+    @Override
+    public int hashCode() {
+        int result = zahl;
+        result = 31 * result + neueZahl;
+        result = 31 * result + (zahlenListe != null ? zahlenListe.hashCode() : 0);
+        return result;
     }
 }
-
-
-
 //- Protected und private Unterscheidung, Protected => Man möchte die Attribute in der Subklasse direkt ansprechen Private => Ansprechbar über getter und setter, sowie super() in der initialisierung
 //this() und super() nicht in einem Konstruktor verwenden
