@@ -5,8 +5,8 @@ import java.util.ArrayList;
 class SubCheatsheet extends Cheatsheet {
     private int weitereZahl;
 
-    public SubCheatsheet(int zahl, int neueZahl, ArrayList<Integer> zahlenListe, int weitereZahl) {
-        super(zahl, neueZahl, zahlenListe);
+    public SubCheatsheet(int zahl, int neueZahl, int weitereZahl) {
+        super(zahl, neueZahl);
         setWeitereZahl(weitereZahl);
     }
 
