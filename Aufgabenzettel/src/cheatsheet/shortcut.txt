@@ -1,0 +1,8 @@
+[] - Alt Gr + 8 u. 9
+{} - Alt Gr + 7 u. 0
+Generate Methods - Code -> Generate
+Refactoring - Rechtsklick -> Refactor
+command - Strg
+
+Value Type - Konzentration auf den Inhalt und erfordern überschreiben von equals - String, Date
+Entity Type - Konzentration auf die Funktionsweise und sollten equals nicht überschreiben - Math, Thread

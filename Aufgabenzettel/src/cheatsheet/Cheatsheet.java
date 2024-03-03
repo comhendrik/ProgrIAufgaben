@@ -21,15 +21,15 @@ public abstract class Cheatsheet implements Comparable<Cheatsheet> {
 
     public final static int MULTIPLIKATOR = 5;
 
-    public Cheatsheet(int zahl, int neueZahl, ArrayList<Integer> zahlenListe) {
+    public Cheatsheet(int zahl, int neueZahl) {
         this.zahl = zahl;
         this.neueZahl = neueZahl;
-        this.zahlenListe = zahlenListe;
+        this.zahlenListe = new ArrayList<>();
     }
 
-    public Cheatsheet(ArrayList<Integer> zahlenListe) {
+    public Cheatsheet() {
         //super() nicht möglich
-        this(0,0,zahlenListe);
+        this(0,0);
     }
 
     public int getZahl() {
@@ -62,6 +62,20 @@ public abstract class Cheatsheet implements Comparable<Cheatsheet> {
         int stunden = sekunden / 3600;
         int minuten = (sekunden % 3600) / 60;
         int übrigeSekunden  = sekunden % 60;
+    }
+
+    public boolean switchNeueZahl() {
+        switch(neueZahl) {
+            case 1:
+                System.out.println(1);
+                break;
+            case 2:
+                System.out.println(2);
+                //default wird auch aufgerufen, weil kein break vorhanden ist
+            default:
+                return false;
+        }
+        return true;
     }
 
     public abstract int berechneNummern();
