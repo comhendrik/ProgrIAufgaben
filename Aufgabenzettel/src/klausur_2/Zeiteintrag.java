@@ -13,7 +13,7 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
 
     public Zeiteintrag(int laufendeNummer, long beginn) {
         setLaufendeNummer(laufendeNummer);
-        this.beginn = beginn;
+        setBeginn(beginn);
         this.ende = -1;
     }
 
@@ -31,6 +31,7 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
     }
 
     public void setBeginn(long beginn) {
+        if (beginn < 0) throw new IllegalArgumentException("Zeit liegt nach dem Referenzzeitpunkt");
         this.beginn = beginn;
     }
 
