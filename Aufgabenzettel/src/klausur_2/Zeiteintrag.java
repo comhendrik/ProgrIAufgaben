@@ -40,6 +40,8 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
     }
 
     public void setEnde(long ende) {
+        if (ende < 0) throw new IllegalArgumentException("ende negativ");
+        if (ende < beginn) throw new IllegalArgumentException("ende vor beginn");
         this.ende = ende;
     }
 
@@ -60,37 +62,39 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
     }
 
     public double getDauer() {
-        if (ende < 0) return 0.0;
+        if (this.istOffen()) return -1.0;
         long differenz = ende - beginn;
         long stunden = differenz / 3600;
         long minuten = (differenz % 3600) / 60;
         long sekunden = differenz % 60;
-        System.out.println(stunden);
-        System.out.println(minuten / 60);
         return stunden + (minuten / 60.0) + (sekunden / 3600.0);
 
     }
 
     @Override
     public String toString() {
-        String s = "Start: " + this.beginn + " Ende: ";
-        if (this.ende < 0) {
+        String s = "Start: " + beginn + " Ende: ";
+        if (this.istOffen()) {
             s += "--";
         } else {
-            s += this.ende;
+            s += ende;
         }
-        s += " Bemerkung: " + this.bemerkung;
+        s += " Bemerkung: " + bemerkung;
         return s;
     }
 
     public boolean überdeckt(Zeiteintrag other) {
-        if (other.ende < 0) return this.ende < other.beginn;
+        if (other.istOffen()) return this.ende < other.beginn;
         return this.ende < other.beginn && other.ende < this.beginn;
     }
 
     public boolean eintragKannHinzugefügtWerden(Zeiteintrag other) {
-        if (this.ende > 0) return true;
-        return other.ende > 0;
+        if (this.istOffen()) return true;
+        return !other.istOffen();
+    }
+
+    public boolean istOffen() {
+        return ende < 0;
     }
 
     @Override
@@ -110,6 +114,6 @@ public class Zeiteintrag implements Comparable<Zeiteintrag> {
 
     @Override
     public int compareTo(Zeiteintrag o) {
-        return Long.compare(this.laufendeNummer,o.laufendeNummer);
+        return Long.compare(this.beginn,o.beginn );
     }
 }
